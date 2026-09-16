@@ -4,103 +4,110 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#111827">
-<title>Meu Dinheiro</title>
 <link rel="manifest" href="manifest.json">
-<link rel="icon" href="icon.svg">
+<title>Meu Dinheiro V2</title>
 <style>
-:root{--bg:#f4f6f8;--card:#fff;--text:#17202a;--muted:#687386;--primary:#111827;--green:#14804a;--red:#c62828;--line:#e6e9ee;--blue:#2563eb}
-*{box-sizing:border-box}body{margin:0;background:var(--bg);font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial;color:var(--text)}
-header{background:var(--primary);color:white;padding:18px 16px 22px;position:sticky;top:0;z-index:10}
-header .top{display:flex;justify-content:space-between;align-items:center;gap:12px}h1{font-size:22px;margin:0}.month{font-size:13px;color:#cbd5e1;margin-top:4px}
-main{max-width:900px;margin:auto;padding:14px 14px 92px}.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
-.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px;box-shadow:0 2px 8px #00000008}.label{font-size:12px;color:var(--muted)}.value{font-size:21px;font-weight:750;margin-top:5px}.green{color:var(--green)}.red{color:var(--red)}
-.balance{grid-column:1/-1;background:linear-gradient(135deg,#111827,#263244);color:#fff}.balance .label{color:#cbd5e1}.balance .value{font-size:30px}
-.section{margin-top:16px}.section h2{font-size:16px;margin:0 0 9px}
-.actions{display:grid;grid-template-columns:1fr 1fr;gap:10px}.btn{border:0;border-radius:13px;padding:13px;font-weight:700;font-size:14px;cursor:pointer}.primary{background:var(--primary);color:#fff}.income{background:#dcfce7;color:#166534}.expense{background:#fee2e2;color:#991b1b}.ghost{background:#eef2f7;color:#263244}
-.tabs{display:flex;gap:7px;overflow:auto;padding:4px 0}.tab{white-space:nowrap;border:1px solid var(--line);background:#fff;border-radius:999px;padding:8px 12px;font-size:12px}.tab.active{background:var(--primary);color:#fff}
-.item{display:flex;align-items:center;gap:11px;padding:12px 0;border-bottom:1px solid var(--line)}.item:last-child{border-bottom:0}.ico{width:40px;height:40px;border-radius:12px;display:grid;place-items:center;background:#f1f5f9}.item .desc{flex:1}.item strong{display:block;font-size:14px}.item small{color:var(--muted)}.amt{font-weight:750}.empty{text-align:center;color:var(--muted);padding:25px 10px}
-.fab{position:fixed;right:18px;bottom:18px;width:58px;height:58px;border:0;border-radius:50%;background:var(--primary);color:#fff;font-size:28px;box-shadow:0 8px 22px #0003}
-dialog{border:0;border-radius:18px;width:min(94vw,500px);padding:0;box-shadow:0 20px 60px #0005}dialog::backdrop{background:#0007}.modal{padding:18px}.modal h2{margin:0 0 15px;font-size:19px}label{display:block;font-size:12px;color:var(--muted);margin:10px 0 5px}input,select{width:100%;padding:12px;border:1px solid #d8dee8;border-radius:10px;font-size:15px;background:#fff}.row{display:grid;grid-template-columns:1fr 1fr;gap:10px}.modal-actions{display:flex;gap:8px;margin-top:16px}.modal-actions .btn{flex:1}
-.bottom{position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid var(--line);padding:9px max(14px,calc((100vw - 900px)/2));display:flex;justify-content:space-around}.nav{border:0;background:none;color:var(--muted);font-size:11px}.nav.active{color:var(--primary);font-weight:800}
-.hidden{display:none!important}.chart{height:160px;display:flex;align-items:flex-end;gap:7px;padding:10px 2px}.bar{flex:1;background:#cbd5e1;border-radius:7px 7px 2px 2px;min-width:8px;position:relative}.bar span{position:absolute;bottom:100%;font-size:9px;color:var(--muted);left:50%;transform:translateX(-50%);white-space:nowrap}
-@media(min-width:700px){.grid{grid-template-columns:repeat(4,1fr)}.balance{grid-column:span 2}.actions{grid-template-columns:repeat(4,1fr)}}
+:root{--bg:#f3f4f6;--card:#fff;--text:#111827;--muted:#6b7280;--line:#e5e7eb;--accent:#111827;--good:#15803d;--bad:#dc2626;--soft:#f9fafb}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
+button,input,select{font:inherit}button{cursor:pointer;border:0}.app{display:flex;min-height:100vh}.side{width:245px;background:#111827;color:#fff;padding:22px 14px;position:fixed;inset:0 auto 0 0}.brand{font-weight:800;font-size:21px;padding:8px 10px 25px}.nav button{display:block;width:100%;background:transparent;color:#d1d5db;text-align:left;padding:12px;border-radius:10px;margin:4px 0}.nav button.active,.nav button:hover{background:#374151;color:#fff}.main{margin-left:245px;width:calc(100% - 245px);padding:24px;max-width:1500px}.top{display:flex;justify-content:space-between;align-items:center;gap:15px;margin-bottom:20px}.top h1{margin:0;font-size:28px}.month{display:flex;align-items:center;gap:8px}.month button,.iconbtn{background:var(--card);border:1px solid var(--line);border-radius:9px;padding:8px 12px}.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;box-shadow:0 2px 8px #00000008}.label{color:var(--muted);font-size:13px}.value{font-size:25px;font-weight:800;margin-top:7px}.good{color:var(--good)}.bad{color:var(--bad)}.section{margin-top:18px}.section h2{font-size:18px;margin:0 0 12px}.two{display:grid;grid-template-columns:1.2fr .8fr;gap:14px}.actions{display:flex;gap:8px;flex-wrap:wrap}.primary{background:#111827;color:#fff;padding:10px 14px;border-radius:10px}.secondary{background:#fff;border:1px solid var(--line);padding:10px 14px;border-radius:10px}.list{display:flex;flex-direction:column;gap:8px}.row{display:flex;justify-content:space-between;gap:12px;align-items:center;padding:12px;border:1px solid var(--line);border-radius:11px;background:#fff}.small{font-size:12px;color:var(--muted)}.bar{height:10px;background:#e5e7eb;border-radius:10px;overflow:hidden}.bar>i{display:block;height:100%;background:#111827;border-radius:10px}.tablewrap{overflow:auto}.table{width:100%;border-collapse:collapse}.table th,.table td{padding:11px 8px;border-bottom:1px solid var(--line);text-align:left;white-space:nowrap}.table th{font-size:12px;color:var(--muted)}.modal{position:fixed;inset:0;background:#0008;display:none;align-items:center;justify-content:center;padding:18px;z-index:10}.modal.open{display:flex}.dialog{background:#fff;border-radius:18px;padding:20px;width:min(620px,100%);max-height:92vh;overflow:auto}.form{display:grid;grid-template-columns:1fr 1fr;gap:12px}.field{display:flex;flex-direction:column;gap:6px}.field.full{grid-column:1/-1}.field label{font-size:12px;color:var(--muted)}.field input,.field select{padding:10px;border:1px solid #d1d5db;border-radius:9px;background:#fff}.dialogfoot{display:flex;justify-content:flex-end;gap:8px;margin-top:16px}.empty{text-align:center;color:var(--muted);padding:25px}.hidden{display:none}.mobilebar{display:none}
+@media(max-width:850px){.side{display:none}.main{margin-left:0;width:100%;padding:15px 14px 82px}.grid{grid-template-columns:1fr 1fr}.two{grid-template-columns:1fr}.top{align-items:flex-start;flex-direction:column}.mobilebar{display:flex;position:fixed;bottom:0;left:0;right:0;background:#111827;padding:8px;z-index:8;justify-content:space-around}.mobilebar button{background:transparent;color:#d1d5db;font-size:11px}.mobilebar button.active{color:#fff}.form{grid-template-columns:1fr}.field.full{grid-column:auto}}
 </style>
 </head>
 <body>
-<header><div class="top"><div><h1>Meu Dinheiro</h1><div class="month" id="monthTitle"></div></div><button class="btn ghost" id="exportBtn">Backup</button></div></header>
-<main>
-<section id="home">
-<div class="grid">
-<div class="card balance"><div class="label">Saldo</div><div class="value" id="balance">R$ 0,00</div></div>
-<div class="card"><div class="label">Entradas</div><div class="value green" id="incomeTotal">R$ 0,00</div></div>
-<div class="card"><div class="label">Saídas</div><div class="value red" id="expenseTotal">R$ 0,00</div></div>
-<div class="card"><div class="label">A pagar</div><div class="value" id="dueTotal">R$ 0,00</div></div>
-</div>
-<div class="section actions"><button class="btn income" onclick="openForm('entrada')">＋ Entrada</button><button class="btn expense" onclick="openForm('saida')">− Saída</button></div>
-<div class="section card"><h2>Resumo dos gastos</h2><div class="chart" id="chart"></div></div>
-<div class="section card"><h2>Últimas movimentações</h2><div id="recent"></div></div>
-</section>
-
-<section id="movements" class="hidden">
-<div class="section card"><h2>Movimentações</h2><div class="tabs" id="filters"><button class="tab active" data-filter="todos">Todas</button><button class="tab" data-filter="entrada">Entradas</button><button class="tab" data-filter="saida">Saídas</button></div><div id="allList"></div></div>
-</section>
-
-<section id="accounts" class="hidden">
-<div class="section card"><h2>Contas e cartões</h2><div id="accountsList"></div><button class="btn primary" style="width:100%;margin-top:12px" onclick="openAccount()">＋ Nova conta/cartão</button></div>
-</section>
-
-<section id="reports" class="hidden">
-<div class="section card"><h2>Relatório do mês</h2><div id="report"></div></div>
-</section>
+<div class="app">
+<aside class="side"><div class="brand">💰 Meu Dinheiro <span style="font-size:11px;color:#9ca3af">V2</span></div><nav class="nav" id="nav">
+<button data-page="home">🏠 Início</button><button data-page="mov">↕️ Movimentações</button><button data-page="accounts">🏦 Contas</button><button data-page="cards">💳 Cartões</button><button data-page="bills">📅 Contas a pagar</button><button data-page="goals">🎯 Metas</button><button data-page="reports">📊 Relatórios</button><button data-page="settings">⚙️ Configurações</button></nav></aside>
+<main class="main">
+<div class="top"><div><h1 id="title">Início</h1><div class="small">Seu controle financeiro pessoal</div></div><div class="month"><button id="prev">‹</button><strong id="monthLabel"></strong><button id="next">›</button></div></div>
+<div id="content"></div>
 </main>
+</div>
+<div class="mobilebar" id="mobilebar"><button data-page="home">🏠<br>Início</button><button data-page="mov">↕️<br>Mov.</button><button data-page="accounts">🏦<br>Contas</button><button data-page="cards">💳<br>Cartões</button><button data-page="more">☰<br>Mais</button></div>
 
-<button class="fab" onclick="openForm('saida')" aria-label="Nova movimentação">＋</button>
-<nav class="bottom"><button class="nav active" data-page="home">Início</button><button class="nav" data-page="movements">Movimentações</button><button class="nav" data-page="accounts">Contas</button><button class="nav" data-page="reports">Relatórios</button></nav>
-
-<dialog id="formDialog"><div class="modal"><h2 id="formTitle">Nova movimentação</h2>
-<div class="row"><div><label>Tipo</label><select id="type"><option value="saida">Saída</option><option value="entrada">Entrada</option></select></div><div><label>Valor</label><input id="amount" type="number" min="0" step="0.01" inputmode="decimal" placeholder="0,00"></div></div>
-<div class="row"><div><label>Data</label><input id="date" type="date"></div><div><label>Categoria</label><select id="category"></select></div></div>
-<label>Descrição</label><input id="description" placeholder="Ex.: Mercado">
-<label>Conta / cartão</label><select id="account"></select>
-<div class="row"><div><label>Forma</label><select id="method"><option>Pix</option><option>Débito</option><option>Crédito</option><option>Dinheiro</option><option>Boleto</option><option>Transferência</option><option>Outro</option></select></div><div><label>Parcelas</label><input id="installments" type="number" min="1" value="1"></div></div>
-<div class="modal-actions"><button class="btn ghost" onclick="formDialog.close()">Cancelar</button><button class="btn primary" onclick="saveMovement()">Salvar</button></div></div></dialog>
-
-<dialog id="accountDialog"><div class="modal"><h2>Nova conta/cartão</h2><label>Nome</label><input id="accName" placeholder="Ex.: Banco do Brasil"><label>Tipo</label><select id="accType"><option>Conta</option><option>Cartão</option><option>Dinheiro</option></select><label>Saldo/limite inicial</label><input id="accValue" type="number" step="0.01" value="0"><div class="modal-actions"><button class="btn ghost" onclick="accountDialog.close()">Cancelar</button><button class="btn primary" onclick="saveAccount()">Salvar</button></div></div></dialog>
+<div class="modal" id="modal"><div class="dialog"><h2 id="modalTitle"></h2><div id="modalBody"></div></div></div>
 
 <script>
-const KEY='meu_dinheiro_v1';
-let db=JSON.parse(localStorage.getItem(KEY)||'null')||{movements:[],accounts:[{id:crypto.randomUUID(),name:'Carteira',type:'Dinheiro',value:0}]};
-const cats=['Alimentação','Casa','Transporte','Compras','Lazer','Saúde','Trabalho','Moradia','Salário','Vendas','Contas','Outros'];
-const money=v=>new Intl.NumberFormat('pt-BR',{style:'currency',currency:'BRL'}).format(v||0);
-const today=()=>new Date().toISOString().slice(0,10);
-function persist(){localStorage.setItem(KEY,JSON.stringify(db));render()}
-function monthKey(d){return d.slice(0,7)}
-function currentMovs(){let m=new Date().toISOString().slice(0,7);return db.movements.filter(x=>monthKey(x.date)===m)}
+const KEY="meu_dinheiro_v2";
+let db=JSON.parse(localStorage.getItem(KEY)||"null")||{
+ transactions:[], accounts:[{id:id(),name:"Carteira",type:"Dinheiro",balance:0}], cards:[],
+ bills:[], goals:[], categories:["Moradia","Alimentação","Transporte","Saúde","Lazer","Compras","Educação","Assinaturas","Salário","Outros"]
+};
+let page="home", cursor=new Date(); cursor.setDate(1);
+function id(){return Math.random().toString(36).slice(2)+Date.now().toString(36)}
+function save(){localStorage.setItem(KEY,JSON.stringify(db)); render()}
+function money(v){return Number(v||0).toLocaleString("pt-BR",{style:"currency",currency:"BRL"})}
+function esc(s){return String(s??"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[m]))}
+function ym(d){return d.slice(0,7)}
+function currentYM(){return cursor.toISOString().slice(0,7)}
+function fmtDate(d){return new Date(d+"T12:00:00").toLocaleDateString("pt-BR")}
+function transactionsMonth(){return db.transactions.filter(t=>ym(t.date)===currentYM())}
+function totals(){let a=transactionsMonth(),income=a.filter(x=>x.kind==="income").reduce((s,x)=>s+ +x.value,0),expense=a.filter(x=>x.kind==="expense").reduce((s,x)=>s+ +x.value,0);return {income,expense,balance:income-expense}}
+function modal(title,body){document.getElementById("modalTitle").textContent=title;document.getElementById("modalBody").innerHTML=body;document.getElementById("modal").classList.add("open")}
+function closeModal(){document.getElementById("modal").classList.remove("open")}
+document.getElementById("modal").addEventListener("click",e=>{if(e.target.id==="modal")closeModal()})
 function render(){
- document.getElementById('monthTitle').textContent=new Date().toLocaleDateString('pt-BR',{month:'long',year:'numeric'});
- let ms=currentMovs(), inc=ms.filter(x=>x.type==='entrada').reduce((a,x)=>a+x.amount,0), exp=ms.filter(x=>x.type==='saida').reduce((a,x)=>a+x.amount,0);
- document.getElementById('incomeTotal').textContent=money(inc);document.getElementById('expenseTotal').textContent=money(exp);document.getElementById('balance').textContent=money(inc-exp);
- document.getElementById('dueTotal').textContent=money(ms.filter(x=>x.type==='saida'&&x.due).reduce((a,x)=>a+x.amount,0));
- const recent=[...db.movements].sort((a,b)=>b.date.localeCompare(a.date)).slice(0,8);document.getElementById('recent').innerHTML=listHtml(recent);
- document.getElementById('allList').innerHTML=listHtml([...db.movements].sort((a,b)=>b.date.localeCompare(a.date)));
- renderAccounts();renderReport(ms);renderChart(ms);fillAccounts();
+ document.getElementById("monthLabel").textContent=cursor.toLocaleDateString("pt-BR",{month:"long",year:"numeric"});
+ const names={home:"Início",mov:"Movimentações",accounts:"Contas",cards:"Cartões",bills:"Contas a pagar",goals:"Metas",reports:"Relatórios",settings:"Configurações"};
+ document.getElementById("title").textContent=names[page]||"Mais";
+ document.querySelectorAll("[data-page]").forEach(b=>b.classList.toggle("active",b.dataset.page===page));
+ const c=document.getElementById("content");
+ if(page==="home")home(c); else if(page==="mov")mov(c); else if(page==="accounts")accounts(c); else if(page==="cards")cards(c); else if(page==="bills")bills(c); else if(page==="goals")goals(c); else if(page==="reports")reports(c); else settings(c);
 }
-function listHtml(arr){if(!arr.length)return '<div class="empty">Nenhuma movimentação cadastrada.</div>';return arr.map(x=>`<div class="item"><div class="ico">${x.type==='entrada'?'📥':'📤'}</div><div class="desc"><strong>${esc(x.description||x.category)}</strong><small>${x.category} · ${new Date(x.date+'T12:00').toLocaleDateString('pt-BR')}${x.installments>1?' · '+x.installments+'x':''}</small></div><div class="amt ${x.type==='entrada'?'green':'red'}">${x.type==='entrada'?'+':'−'} ${money(x.amount)}</div><button class="tab" onclick="delMovement('${x.id}')">×</button></div>`).join('')}
-function esc(s){return String(s).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]))}
-function fillCats(){category.innerHTML=cats.map(c=>`<option>${c}</option>`).join('')}
-function fillAccounts(){account.innerHTML=db.accounts.map(a=>`<option value="${a.id}">${esc(a.name)} (${a.type})</option>`).join('')}
-function openForm(type){fillCats();fillAccounts();formDialog.showModal();document.getElementById('type').value=type;document.getElementById('amount').value='';document.getElementById('date').value=today();document.getElementById('description').value='';document.getElementById('installments').value=1}
-function saveMovement(){let amount=parseFloat(document.getElementById('amount').value);if(!amount||amount<=0)return alert('Informe um valor válido.');db.movements.push({id:crypto.randomUUID(),type:type.value,amount,date:date.value,category:category.value,description:description.value.trim(),account:account.value,method:method.value,installments:Math.max(1,parseInt(installments.value)||1),due:false});formDialog.close();persist()}
-function delMovement(id){if(confirm('Excluir esta movimentação?')){db.movements=db.movements.filter(x=>x.id!==id);persist()}}
-function openAccount(){accountDialog.showModal();accName.value='';accValue.value=0}
-function saveAccount(){let name=accName.value.trim();if(!name)return alert('Informe o nome.');db.accounts.push({id:crypto.randomUUID(),name,type:accType.value,value:parseFloat(accValue.value)||0});accountDialog.close();persist()}
-function renderAccounts(){let box=document.getElementById('accountsList');box.innerHTML=db.accounts.map(a=>{let bal=a.value+db.movements.filter(x=>x.account===a.id).reduce((s,x)=>s+(x.type==='entrada'?x.amount:-x.amount),0);return `<div class="item"><div class="ico">${a.type==='Cartão'?'💳':a.type==='Dinheiro'?'💵':'🏦'}</div><div class="desc"><strong>${esc(a.name)}</strong><small>${a.type}</small></div><div class="amt">${money(bal)}</div></div>`}).join('')}
-function renderReport(ms){let cats={};ms.filter(x=>x.type==='saida').forEach(x=>cats[x.category]=(cats[x.category]||0)+x.amount);let total=Object.values(cats).reduce((a,b)=>a+b,0);report.innerHTML=Object.entries(cats).sort((a,b)=>b[1]-a[1]).map(([k,v])=>`<div class="item"><div class="desc"><strong>${esc(k)}</strong><small>${total?((v/total)*100).toFixed(1):0}% dos gastos</small></div><div class="amt red">${money(v)}</div></div>`).join('')||'<div class="empty">Sem gastos neste mês.</div>'}
-function renderChart(ms){let days=Array.from({length:7},(_,i)=>{let d=new Date();d.setDate(d.getDate()-6+i);return d.toISOString().slice(0,10)});let vals=days.map(d=>ms.filter(x=>x.type==='saida'&&x.date===d).reduce((a,x)=>a+x.amount,0));let max=Math.max(...vals,1);chart.innerHTML=vals.map((v,i)=>`<div class="bar" style="height:${Math.max(5,v/max*130)}px"><span>${v?money(v):''}</span></div>`).join('')}
-document.querySelectorAll('.nav').forEach(b=>b.onclick=()=>{document.querySelectorAll('main>section').forEach(s=>s.classList.add('hidden'));document.getElementById(b.dataset.page).classList.remove('hidden');document.querySelectorAll('.nav').forEach(n=>n.classList.remove('active'));b.classList.add('active')});
-document.querySelectorAll('#filters .tab').forEach(b=>b.onclick=()=>{document.querySelectorAll('#filters .tab').forEach(x=>x.classList.remove('active'));b.classList.add('active');let f=b.dataset.filter;let arr=[...db.movements].sort((a,b)=>b.date.localeCompare(a.date));if(f!=='todos')arr=arr.filter(x=>x.type===f);allList.innerHTML=listHtml(arr)});
-exportBtn.onclick=()=>{let blob=new Blob([JSON.stringify(db,null,2)],{type:'application/json'}),a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='backup-meu-dinheiro-'+today()+'.json';a.click();URL.revokeObjectURL(a.href)};
-fillCats();render();
-if('serviceWorker' in navigator)navigator.serviceWorker.register('sw.js').catch(()=>{});
+function home(c){
+ let t=totals(), all=db.transactions.slice().sort((a,b)=>b.date.localeCompare(a.date)).slice(0,7), bills=db.bills.filter(b=>!b.paid).sort((a,b)=>a.due.localeCompare(b.due)).slice(0,5);
+ c.innerHTML=`<div class="grid"><div class="card"><div class="label">Saldo do mês</div><div class="value">${money(t.balance)}</div></div><div class="card"><div class="label">Entradas</div><div class="value good">${money(t.income)}</div></div><div class="card"><div class="label">Despesas</div><div class="value bad">${money(t.expense)}</div></div><div class="card"><div class="label">Contas pendentes</div><div class="value">${money(bills.reduce((s,b)=>s+ +b.value,0))}</div></div></div>
+ <div class="section actions"><button class="primary" onclick="newTx('expense')">＋ Despesa</button><button class="primary" onclick="newTx('income')">＋ Receita</button><button class="secondary" onclick="newBill()">＋ Conta a pagar</button></div>
+ <div class="two section"><div class="card"><h2>Últimas movimentações</h2>${all.length?`<div class="list">${all.map(txRow).join("")}</div>`:`<div class="empty">Nenhuma movimentação ainda.</div>`}</div><div class="card"><h2>Contas a vencer</h2>${bills.length?`<div class="list">${bills.map(b=>`<div class="row"><div><b>${esc(b.name)}</b><div class="small">${fmtDate(b.due)}</div></div><b>${money(b.value)}</b></div>`).join("")}</div>`:`<div class="empty">Tudo em dia 🎉</div>`}</div></div>`;
+}
+function txRow(t){return `<div class="row"><div><b>${esc(t.description)}</b><div class="small">${fmtDate(t.date)} · ${esc(t.category||"Sem categoria")}</div></div><div class="${t.kind==="income"?"good":"bad"}"><b>${t.kind==="income"?"+":"−"} ${money(t.value)}</b></div></div>`}
+function mov(c){
+ let a=transactionsMonth().sort((x,y)=>y.date.localeCompare(x.date));
+ c.innerHTML=`<div class="card"><div class="actions"><button class="primary" onclick="newTx('expense')">＋ Despesa</button><button class="primary" onclick="newTx('income')">＋ Receita</button><input id="search" placeholder="Pesquisar..." style="padding:10px;border:1px solid #ddd;border-radius:9px;min-width:220px"></div><div class="tablewrap section"><table class="table"><thead><tr><th>Data</th><th>Descrição</th><th>Categoria</th><th>Conta</th><th>Valor</th><th></th></tr></thead><tbody id="txbody">${a.map(t=>`<tr><td>${fmtDate(t.date)}</td><td>${esc(t.description)}</td><td>${esc(t.category)}</td><td>${esc(db.accounts.find(x=>x.id===t.accountId)?.name||"—")}</td><td class="${t.kind==="income"?"good":"bad"}">${t.kind==="income"?"+":"−"}${money(t.value)}</td><td><button class="iconbtn" onclick="editTx('${t.id}')">✏️</button> <button class="iconbtn" onclick="delTx('${t.id}')">🗑️</button></td></tr>`).join("")}</tbody></table></div></div>`;
+ document.getElementById("search").oninput=e=>{let q=e.target.value.toLowerCase();document.querySelectorAll("#txbody tr").forEach(r=>r.style.display=r.innerText.toLowerCase().includes(q)?"":"none")}
+}
+function newTx(kind="expense", existing=null){
+ const t=existing||{id:id(),kind,date:new Date().toISOString().slice(0,10),description:"",value:"",category:db.categories[0],accountId:db.accounts[0]?.id||"",note:""};
+ modal(kind==="income"?"Nova receita":"Nova despesa",`<form id="txform" class="form"><div class="field"><label>Tipo</label><select name="kind"><option value="expense" ${t.kind==="expense"?"selected":""}>Despesa</option><option value="income" ${t.kind==="income"?"selected":""}>Receita</option></select></div><div class="field"><label>Data</label><input type="date" name="date" value="${t.date}"></div><div class="field full"><label>Descrição</label><input required name="description" value="${esc(t.description)}" placeholder="Ex.: Supermercado"></div><div class="field"><label>Valor</label><input required type="number" step="0.01" min="0" name="value" value="${t.value}"></div><div class="field"><label>Categoria</label><select name="category">${db.categories.map(x=>`<option ${x===t.category?"selected":""}>${esc(x)}</option>`).join("")}</select></div><div class="field"><label>Conta</label><select name="accountId">${db.accounts.map(x=>`<option value="${x.id}" ${x.id===t.accountId?"selected":""}>${esc(x.name)}</option>`).join("")}</select></div><div class="field full"><label>Observação</label><input name="note" value="${esc(t.note||"")}"></div></form><div class="dialogfoot"><button class="secondary" onclick="closeModal()">Cancelar</button><button class="primary" onclick="saveTx('${t.id}',${!!existing})">Salvar</button></div>`);
+}
+function saveTx(tid,edit){let f=new FormData(document.getElementById("txform"));let t={id:tid,kind:f.get("kind"),date:f.get("date"),description:f.get("description"),value:+f.get("value"),category:f.get("category"),accountId:f.get("accountId"),note:f.get("note")};if(edit)db.transactions=db.transactions.map(x=>x.id===tid?t:x);else db.transactions.push(t);closeModal();save()}
+function editTx(i){let t=db.transactions.find(x=>x.id===i);if(t)newTx(t.kind,t)}
+function delTx(i){if(confirm("Excluir esta movimentação?")){db.transactions=db.transactions.filter(x=>x.id!==i);save()}}
+function accounts(c){
+ c.innerHTML=`<div class="actions"><button class="primary" onclick="newAccount()">＋ Nova conta</button></div><div class="grid section">${db.accounts.map(a=>{let bal=db.transactions.filter(t=>t.accountId===a.id).reduce((s,t)=>s+(t.kind==="income"?1:-1)*+t.value,0);return `<div class="card"><div class="label">${esc(a.type)}</div><div class="value">${esc(a.name)}</div><div class="value">${money(bal)}</div><div class="actions" style="margin-top:10px"><button class="secondary" onclick="editAccount('${a.id}')">Editar</button><button class="secondary" onclick="delAccount('${a.id}')">Excluir</button></div></div>`}).join("")}</div>`;
+}
+function newAccount(existing=null){let a=existing||{id:id(),name:"",type:"Conta corrente"};modal("Conta",`<form id="accform" class="form"><div class="field full"><label>Nome</label><input required name="name" value="${esc(a.name)}" placeholder="Ex.: Nubank"></div><div class="field"><label>Tipo</label><select name="type">${["Conta corrente","Poupança","Dinheiro","Investimentos","Outro"].map(x=>`<option ${x===a.type?"selected":""}>${x}</option>`).join("")}</select></div></form><div class="dialogfoot"><button class="secondary" onclick="closeModal()">Cancelar</button><button class="primary" onclick="saveAccount('${a.id}',${!!existing})">Salvar</button></div>`)}
+function saveAccount(i,e){let f=new FormData(accform),a={id:i,name:f.get("name"),type:f.get("type"),balance:0};if(e)db.accounts=db.accounts.map(x=>x.id===i?{...x,...a}:x);else db.accounts.push(a);closeModal();save()}
+function editAccount(i){newAccount(db.accounts.find(x=>x.id===i))}
+function delAccount(i){if(db.transactions.some(t=>t.accountId===i)){alert("Esta conta possui movimentações e não pode ser excluída.");return}if(confirm("Excluir conta?")){db.accounts=db.accounts.filter(x=>x.id!==i);save()}}
+function cards(c){
+ c.innerHTML=`<div class="actions"><button class="primary" onclick="newCard()">＋ Novo cartão</button></div><div class="grid section">${db.cards.map(x=>`<div class="card"><div class="label">Cartão</div><div class="value">${esc(x.name)}</div><div style="margin-top:10px">Limite: <b>${money(x.limit)}</b></div><div>Fechamento: ${x.close} · Vencimento: ${x.due}</div><div class="actions" style="margin-top:12px"><button class="secondary" onclick="editCard('${x.id}')">Editar</button><button class="secondary" onclick="delCard('${x.id}')">Excluir</button></div></div>`).join("")}</div>`;
+}
+function newCard(existing=null){let x=existing||{id:id(),name:"",limit:0,close:1,due:10};modal("Cartão",`<form id="cardform" class="form"><div class="field full"><label>Nome do cartão</label><input required name="name" value="${esc(x.name)}"></div><div class="field"><label>Limite</label><input type="number" step=".01" name="limit" value="${x.limit}"></div><div class="field"><label>Dia de fechamento</label><input type="number" min="1" max="31" name="close" value="${x.close}"></div><div class="field"><label>Dia de vencimento</label><input type="number" min="1" max="31" name="due" value="${x.due}"></div></form><div class="dialogfoot"><button class="secondary" onclick="closeModal()">Cancelar</button><button class="primary" onclick="saveCard('${x.id}',${!!existing})">Salvar</button></div>`)}
+function saveCard(i,e){let f=new FormData(cardform),x={id:i,name:f.get("name"),limit:+f.get("limit"),close:+f.get("close"),due:+f.get("due")};if(e)db.cards=db.cards.map(a=>a.id===i?x:a);else db.cards.push(x);closeModal();save()}
+function editCard(i){newCard(db.cards.find(x=>x.id===i))} function delCard(i){if(confirm("Excluir cartão?")){db.cards=db.cards.filter(x=>x.id!==i);save()}}
+function bills(c){
+ let a=db.bills.slice().sort((x,y)=>x.due.localeCompare(y.due));c.innerHTML=`<div class="actions"><button class="primary" onclick="newBill()">＋ Nova conta</button></div><div class="card section"><div class="list">${a.length?a.map(b=>`<div class="row"><div><b>${esc(b.name)}</b><div class="small">${fmtDate(b.due)} · ${esc(b.category||"Outros")}</div></div><div><b>${money(b.value)}</b><br><button class="secondary" onclick="toggleBill('${b.id}')">${b.paid?"Desfazer":"Marcar paga"}</button> <button class="iconbtn" onclick="editBill('${b.id}')">✏️</button> <button class="iconbtn" onclick="delBill('${b.id}')">🗑️</button></div></div>`).join(""):`<div class="empty">Nenhuma conta cadastrada.</div>`}</div></div>`}
+function newBill(existing=null){let b=existing||{id:id(),name:"",value:0,due:new Date().toISOString().slice(0,10),category:"Outros",paid:false,recurring:false};modal("Conta a pagar",`<form id="billform" class="form"><div class="field full"><label>Descrição</label><input required name="name" value="${esc(b.name)}"></div><div class="field"><label>Valor</label><input type="number" step=".01" name="value" value="${b.value}"></div><div class="field"><label>Vencimento</label><input type="date" name="due" value="${b.due}"></div><div class="field"><label>Categoria</label><select name="category">${db.categories.map(x=>`<option ${x===b.category?"selected":""}>${esc(x)}</option>`).join("")}</select></div><div class="field"><label>Recorrente</label><select name="recurring"><option value="0" ${!b.recurring?"selected":""}>Não</option><option value="1" ${b.recurring?"selected":""}>Sim</option></select></div></form><div class="dialogfoot"><button class="secondary" onclick="closeModal()">Cancelar</button><button class="primary" onclick="saveBill('${b.id}',${!!existing})">Salvar</button></div>`)}
+function saveBill(i,e){let f=new FormData(billform),b={id:i,name:f.get("name"),value:+f.get("value"),due:f.get("due"),category:f.get("category"),recurring:f.get("recurring")==="1",paid:e?(db.bills.find(x=>x.id===i)?.paid||false):false};if(e)db.bills=db.bills.map(x=>x.id===i?b:x);else db.bills.push(b);closeModal();save()}
+function editBill(i){newBill(db.bills.find(x=>x.id===i))} function toggleBill(i){db.bills=db.bills.map(b=>b.id===i?{...b,paid:!b.paid}:b);save()} function delBill(i){if(confirm("Excluir conta?")){db.bills=db.bills.filter(b=>b.id!==i);save()}}
+function goals(c){c.innerHTML=`<div class="actions"><button class="primary" onclick="newGoal()">＋ Nova meta</button></div><div class="grid section">${db.goals.map(g=>{let p=Math.min(100,(g.saved/g.target)*100||0);return `<div class="card"><b>${esc(g.name)}</b><div class="small">Meta: ${money(g.target)}</div><div style="margin:12px 0" class="bar"><i style="width:${p}%"></i></div><b>${money(g.saved)}</b> <span class="small">(${p.toFixed(0)}%)</span><div class="actions" style="margin-top:12px"><button class="secondary" onclick="addGoal('${g.id}')">＋ Guardar</button><button class="secondary" onclick="editGoal('${g.id}')">Editar</button><button class="secondary" onclick="delGoal('${g.id}')">Excluir</button></div></div>`}).join("")}</div>`}
+function newGoal(existing=null){let g=existing||{id:id(),name:"",target:0,saved:0,deadline:""};modal("Meta financeira",`<form id="goalform" class="form"><div class="field full"><label>Nome</label><input required name="name" value="${esc(g.name)}" placeholder="Ex.: Reserva de emergência"></div><div class="field"><label>Valor da meta</label><input type="number" step=".01" name="target" value="${g.target}"></div><div class="field"><label>Já guardado</label><input type="number" step=".01" name="saved" value="${g.saved}"></div><div class="field"><label>Prazo</label><input type="date" name="deadline" value="${g.deadline}"></div></form><div class="dialogfoot"><button class="secondary" onclick="closeModal()">Cancelar</button><button class="primary" onclick="saveGoal('${g.id}',${!!existing})">Salvar</button></div>`)}
+function saveGoal(i,e){let f=new FormData(goalform),g={id:i,name:f.get("name"),target:+f.get("target"),saved:+f.get("saved"),deadline:f.get("deadline")};if(e)db.goals=db.goals.map(x=>x.id===i?g:x);else db.goals.push(g);closeModal();save()}
+function editGoal(i){newGoal(db.goals.find(x=>x.id===i))} function addGoal(i){let g=db.goals.find(x=>x.id===i);modal("Adicionar à meta",`<form id="goaladd" class="form"><div class="field"><label>Valor</label><input type="number" step=".01" min="0" name="v"></div></form><div class="dialogfoot"><button class="secondary" onclick="closeModal()">Cancelar</button><button class="primary" onclick="saveGoalAdd('${i}')">Adicionar</button></div>`)}function saveGoalAdd(i){let v=+new FormData(goaladd).get("v");db.goals=db.goals.map(g=>g.id===i?{...g,saved:g.saved+v}:g);closeModal();save()}function delGoal(i){if(confirm("Excluir meta?")){db.goals=db.goals.filter(g=>g.id!==i);save()}}
+function reports(c){
+ let a=transactionsMonth(), cats={};a.filter(x=>x.kind==="expense").forEach(x=>cats[x.category]=(cats[x.category]||0)+ +x.value);let max=Math.max(1,...Object.values(cats));let t=totals();c.innerHTML=`<div class="grid"><div class="card"><div class="label">Receitas</div><div class="value good">${money(t.income)}</div></div><div class="card"><div class="label">Despesas</div><div class="value bad">${money(t.expense)}</div></div><div class="card"><div class="label">Economia</div><div class="value">${t.income?((t.balance/t.income)*100).toFixed(1):0}%</div></div><div class="card"><div class="label">Movimentações</div><div class="value">${a.length}</div></div></div><div class="card section"><h2>Despesas por categoria</h2>${Object.keys(cats).length?Object.entries(cats).sort((a,b)=>b[1]-a[1]).map(([k,v])=>`<div style="margin:14px 0"><div style="display:flex;justify-content:space-between"><span>${esc(k)}</span><b>${money(v)}</b></div><div class="bar"><i style="width:${(v/max)*100}%"></i></div></div>`).join(""):`<div class="empty">Sem despesas neste mês.</div>`}</div>`;
+}
+function settings(c){c.innerHTML=`<div class="two"><div class="card"><h2>Dados</h2><p class="small">Os dados ficam no armazenamento local deste navegador.</p><div class="actions"><button class="primary" onclick="backup()">⬇️ Fazer backup</button><label class="secondary">⬆️ Restaurar <input type="file" accept=".json" hidden onchange="restore(this)"></label></div></div><div class="card"><h2>Categorias</h2><div class="list">${db.categories.map(x=>`<div class="row"><span>${esc(x)}</span><button class="iconbtn" onclick="delCat('${esc(x)}')">🗑️</button></div>`).join("")}</div><button class="secondary" style="margin-top:10px" onclick="addCat()">＋ Categoria</button></div></div><div class="card section"><h2>Zona de segurança</h2><button class="secondary" onclick="clearAll()">Apagar todos os dados</button></div>`}
+function addCat(){let x=prompt("Nome da categoria:");if(x&&x.trim()&&!db.categories.includes(x.trim())){db.categories.push(x.trim());save()}}function delCat(x){if(db.categories.length<=1)return;if(confirm("Excluir categoria?")){db.categories=db.categories.filter(c=>c!==x);save()}}
+function backup(){let blob=new Blob([JSON.stringify(db,null,2)],{type:"application/json"}),a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="meu-dinheiro-backup.json";a.click();URL.revokeObjectURL(a.href)}
+function restore(inp){let f=inp.files[0];if(!f)return;let r=new FileReader();r.onload=()=>{try{let x=JSON.parse(r.result);if(!x.transactions||!x.accounts)throw Error();db=x;save();alert("Backup restaurado.");}catch(e){alert("Arquivo de backup inválido.")}};r.readAsText(f)}
+function clearAll(){if(confirm("Isso apagará todos os dados deste navegador. Continuar?")){localStorage.removeItem(KEY);location.reload()}}
+function newMore(){alert("Use o menu lateral no computador para acessar todas as áreas.")}
+document.getElementById("nav").addEventListener("click",e=>{let b=e.target.closest("[data-page]");if(b){page=b.dataset.page;render()}})
+document.getElementById("mobilebar").addEventListener("click",e=>{let b=e.target.closest("[data-page]");if(!b)return;if(b.dataset.page==="more"){newMore();return}page=b.dataset.page;render()})
+document.getElementById("prev").onclick=()=>{cursor.setMonth(cursor.getMonth()-1);render()};document.getElementById("next").onclick=()=>{cursor.setMonth(cursor.getMonth()+1);render()}
+if("serviceWorker" in navigator) navigator.serviceWorker.register("sw.js").catch(()=>{});
+render();
 </script>
-</body></html>
+</body>
+</html>
