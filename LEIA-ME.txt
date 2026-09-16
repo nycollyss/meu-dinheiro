@@ -1,0 +1,26 @@
+MEU DINHEIRO — V1
+===================
+
+Como usar no computador:
+1. Extraia o ZIP.
+2. Abra index.html no navegador.
+3. Os dados ficam salvos no navegador (localStorage).
+
+Como instalar no celular:
+1. Para ter a experiência de app/PWA, hospede esta pasta em um endereço HTTPS (por exemplo, um servidor/site).
+2. Abra o endereço no Chrome/Edge/Safari pelo celular.
+3. Use "Adicionar à tela inicial" / "Instalar app".
+
+Recursos da V1:
+- Saldo, entradas e saídas
+- Categorias
+- Contas/cartões
+- Histórico e exclusão
+- Relatório por categoria
+- Gráfico dos últimos 7 dias
+- Backup JSON
+- Interface responsiva para celular
+- Funcionamento offline após carregamento inicial quando instalado como PWA
+
+Observação:
+O backup é manual. Esta primeira versão não possui sincronização entre aparelhos nem login em nuvem.
